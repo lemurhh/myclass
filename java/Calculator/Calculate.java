@@ -3,6 +3,7 @@ import javax.swing.*;
 import java.awt.event.*;
 import javax.script.*;
 public class Calculate extends JFrame {
+	//设置两个面板容器，方便布局
     JPanel resultPanel = new JPanel();
     JPanel buttonPanel = new JPanel();
     JTextField result = new JTextField(25);
@@ -17,15 +18,18 @@ public class Calculate extends JFrame {
 	setOperator();
 	setControl();
 	setNumber();
+	    //布局
 	resultPanel.setLayout(new FlowLayout());
 	add(resultPanel, BorderLayout.NORTH);
 	buttonPanel.setLayout(new GridLayout(5, 4));
 	add(buttonPanel, BorderLayout.CENTER);
+	    
 	setTitle(name);
 	setBounds(x, y, width, height);
 	setVisible(true);
 	setDefaultCloseOperation(EXIT_ON_CLOSE);
     }
+	//对于数字按钮、运算符按钮通用的监听器
     private void setListener(JButton button, String str) {
 	button.addActionListener(new ActionListener() {
 		public void actionPerformed(ActionEvent e) {
@@ -35,9 +39,11 @@ public class Calculate extends JFrame {
 	    });
     }
     private void setResult() {
+	    //键盘事件的监听器
 	result.addKeyListener(new KeyListener() {
 		public void keyTyped(KeyEvent e) {}
 		public void keyPressed(KeyEvent e) {}
+		//当按键释放时，将formula替换为文本区中的内容
 		public void keyReleased(KeyEvent e) {
 		    formula.replace(0, formula.length(), result.getText());
 		}
