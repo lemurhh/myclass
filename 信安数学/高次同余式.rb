@@ -1,5 +1,5 @@
 # coding: utf-8
-require './孙子定理.rb'
+require '/root/myclass/信安数学/孙子定理.rb'
 
 def prime_factors n 
 	return [] if n < 2	

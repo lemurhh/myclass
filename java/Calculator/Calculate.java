@@ -33,7 +33,8 @@ public class Calculate extends JFrame {
     private void setListener(JButton button, String str) {
 	button.addActionListener(new ActionListener() {
 		public void actionPerformed(ActionEvent e) {
-		    formula.append(str);
+		    JButton tmp = (JButton)e.getSource();
+		    formula.append(tmp.getText());
 		    result.setText(formula.toString());
 		}
 	    });
