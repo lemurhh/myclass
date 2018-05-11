@@ -7,8 +7,8 @@ public class Calculate extends JFrame {
     JPanel resultPanel = new JPanel();
     JPanel buttonPanel = new JPanel();
     JTextField result = new JTextField(25);
-    JButton numbers[] = new JButton[11];
-    JButton operators[] = new JButton[6];
+    JButton numbers[] = {new JButton("9"), new JButton("8"), new JButton("7"), new JButton("6"), new JButton("5"), new JButton("4"), new JButton("3"), new JButton("2"), new JButton("1"), new JButton("0"), new JButton(".")};
+    JButton operators[] = {new JButton("+"), new JButton("-"), new JButton("*"), new JButton("/"), new JButton("("), new JButton(")")};
     JButton controls[] = {new JButton("C"), new JButton("<-"), new JButton("=")};
     StringBuffer formula = new StringBuffer("");
     static ScriptEngine jse = new ScriptEngineManager().getEngineByName("JavaScript");
@@ -30,7 +30,7 @@ public class Calculate extends JFrame {
 	setDefaultCloseOperation(EXIT_ON_CLOSE);
     }
 	//对于数字按钮、运算符按钮通用的监听器
-    private void setListener(JButton button, String str) {
+    private void setListener(JButton button) {
 	button.addActionListener(new ActionListener() {
 		public void actionPerformed(ActionEvent e) {
 		    JButton tmp = (JButton)e.getSource();
@@ -63,20 +63,16 @@ public class Calculate extends JFrame {
 	resultPanel.add(result);
     }
     private void setOperator() {
-	String ops[] = {"+", "-", "*", "/", "(", ")"};
-	for(int i=0; i<ops.length; i++) {
-	    operators[i] = new JButton(ops[i]);
+	for(int i=0; i<operators.length; i++) {
 	    operators[i].setPreferredSize(buttonSize);
-	    setListener(operators[i], ops[i]);
+	    setListener(operators[i]);
 	    buttonPanel.add(operators[i]);
 	}
     }
     private void setNumber() {
-	String nums[] = {"9", "8", "7", "6", "5", "4", "3", "2", "1", "0", "."};
-	for(int i=0; i<nums.length; i++) {
-	    numbers[i] = new JButton(nums[i]);
+	for(int i=0; i<numbers.length; i++) {
 	    numbers[i].setPreferredSize(buttonSize);
-	    setListener(numbers[i], nums[i]);
+	    setListener(numbers[i]);
 	    buttonPanel.add(numbers[i]);
 	}
     }
