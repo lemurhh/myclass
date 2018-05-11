@@ -1,3 +1,14 @@
+def mod_repeat_remainder b, n, m
+a_k = 1
+b_k_p1 = b
+n = n.to_s(2).reverse! #将指数n写为二进制形式
+n.size.times do |i|
+	a_k_1 , b_k = a_k, b_k_p1
+	a_k = (a_k_1 * (b_k ** (n[i].to_i))) % m #迭代a
+	b_k_p1 = (b_k ** 2) % m #迭代b
+end
+a_k
+end
 def prime_factors n 
 	return [] if n < 2	
 	factors = []
@@ -53,13 +64,12 @@ def rabin n, t
   s ,t = divide n-1
   t.times do
     b = rand(2..n-2)
-    if (b**t)%n==1
+    if mod_repeat_remainder(b, t, n)==1
       next
     else
-      next if true==0.upto(s-1) {|r| break true if (b**((2**r)*t))%n==n-1}
+      next if true==0.upto(s-1) {|r| break true if mod_repeat_remainder(b, (2**r)*t, n)==n-1}
     end
     return false
   end
   true
 end
-      
